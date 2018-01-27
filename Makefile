@@ -77,7 +77,7 @@ $(OBJ_PATH)/%.o:$(SRC_PATH)/%.cpp
 # -ljsoncpp 必须放在.o文件或源文件后
 # -L$(LIB_PATH) -ljsoncpp_linux-4.9.4
 $(TARGET): ${OBJS}
-	$(CC) $(CPPFLAGS) ${C11} -o $@ $^ -ljsoncpp
+	$(CC) $(CPPFLAGS) ${C11} -o $@ $^ -L$(LIB_PATH) -ljsoncpp_linux-4.9.4
 
 
 # 伪目标，没有依赖只有执行动作的目标
