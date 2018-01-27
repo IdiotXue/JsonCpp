@@ -9,7 +9,7 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     /**
-     * 解析：主要是Value的访问和类型转换，及Reader的操作
+     * 解析：主要是Value的访问和类型转换，及Reader的操作（反序列化）
      */
     //example 1: 从文件中解析json
     cout << "--- Example 1 ---" << endl;
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
     //example 2: 从string中解析
     cout << "--- Example 2 ---" << endl;
     string str("{\"book\":\"UNIX Program\",\"isbn\":100}");
-    reader.parse(str, obj); //从string中解析
+    reader.parse(str, obj); //从string中解析，反序列化
     string stBook = obj["book"].asString();
     int nIsbn = obj["isbn"].asInt();
     int nYear = obj.get("year", 2018).asInt(); //如果不存在，就返回默认值2018
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
     cout << "Book: " << stBook << ", Isbn: " << nIsbn << ", Year: " << nYear << endl;
 
     /**
-     * 生成：主要是Value的插入 和 Writer的操作
+     * 生成：主要是Value的插入 和 Writer的操作（序列化）
      */
     //example 3：Value底层用map实现，因此其操作类比map就懂了
     cout << "--- Example 3 ---" << endl;
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
     cout << "json_temp to format string:" << stJson << endl; //注意与直接输出json_temp是不同的
     Json::FastWriter fastW;
     string stFast = fastW.write(json_temp);
-    cout << "fast writer json_temp: " << stFast << endl; //无格式，即无换行，一行输出整个json
+    cout << "fast writer json_temp: " << stFast << endl; //无格式，即无换行，一行输出整个json，序列化
     Json::StyledWriter styleW;
     string stStyle = styleW.write(json_temp);
     cout << "styled writer json_temp: " << stStyle << endl; //与toStyledString一样
